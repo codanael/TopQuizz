@@ -1,6 +1,7 @@
 package com.example.anael.topquizz.Controller;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +29,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int mNumberOfQuestions;
     private int mScore;
 
+    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mAnswer2Btn.setOnClickListener(this);
         mAnswer3Btn.setOnClickListener(this);
         mAnswer4Btn.setOnClickListener(this);
+
+
 
     }
 
@@ -90,6 +95,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent();
+                        intent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+                        setResult(RESULT_OK, intent);
                         finish();
                     }
                 })
