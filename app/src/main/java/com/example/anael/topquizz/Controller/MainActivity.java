@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         String firstname = getPreferences(MODE_PRIVATE).getString("firstname",null);
         int previousScore = getPreferences(MODE_PRIVATE).getInt("score",0);
 
-        mGreetingText.setText("Bonjour "+ firstname+ " ! Votre dernier score était "+previousScore);
+        mGreetingText.setText("Bonjour "+ firstname+ " ! Votre dernier score était "+previousScore+"/4");
         mNameInput.setText(firstname);
         mNameInput.setSelection(firstname.length());
         mPlayButton.setEnabled(true);
