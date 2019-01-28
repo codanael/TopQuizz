@@ -32,14 +32,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mUser = new User();
-        mGreetingText = (TextView) findViewById(R.id.activity_main_main_greeting_txt);
-        mNameInput = (EditText) findViewById(R.id.activity_main_main_name_input);
-        mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
+        mGreetingText = findViewById(R.id.activity_main_main_greeting_txt);
+        mNameInput = findViewById(R.id.activity_main_main_name_input);
+        mPlayButton = findViewById(R.id.activity_main_play_btn);
         mScoreText = findViewById(R.id.activity_main_score_txt);
 
         mPlayButton.setEnabled(false);
         mPreferences = getPreferences(MODE_PRIVATE);
-
 
 
         mNameInput.addTextChangedListener(new TextWatcher() {
@@ -74,11 +73,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     @Override
+
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
+        if (GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
-            mPreferences.edit().putInt("score",score).apply();
+            mPreferences.edit().putInt("score", score).apply();
 
             greetingUser();
 
@@ -87,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void greetingUser() {
-        String firstname = getPreferences(MODE_PRIVATE).getString("firstname",null);
-        int previousScore = getPreferences(MODE_PRIVATE).getInt("score",0);
+        String firstname = getPreferences(MODE_PRIVATE).getString("firstname", null);
+        int previousScore = getPreferences(MODE_PRIVATE).getInt("score", 0);
 
-        mGreetingText.setText("Bonjour "+ firstname+ " ! Votre dernier score était "+previousScore+"/4");
+        mGreetingText.setText("Bonjour " + firstname + " ! Votre dernier score était " + previousScore + "/4");
         mNameInput.setText(firstname);
         mNameInput.setSelection(firstname.length());
         mPlayButton.setEnabled(true);
